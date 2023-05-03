@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 3001;
+const cors = require("cors");
 app.use(express.json());
+app.use(cors());
 // mongodb Connection
 const mongoose = require("mongoose");
 const ConnectedtoDb = async () => {
@@ -38,25 +40,36 @@ const users = mongoose.model(
   "users",
   new mongoose.Schema({
     name: String,
-    email: String,
     phone: Number,
+    email: String,
     Password: String,
   })
 );
 
+app.get("/", (req, res) => {
+  res.send("wel-come to online liquoir shop");
+});
+
 app.post("/register", async (req, res) => {
   try {
-    const userData = users.create(req.body);
-    console.log(userData);
+    const userData = await users.create(req.body);
+    console.log(req.body);
   } catch (err) {
     console.log(err);
   }
 });
 
 app.post("/login", async (req, res) => {
+  const fetchData = await users.findOne({
+    email: req.body.email,
+    password: req.body.password,
+  });
   try {
-    const data = users.find();
-    console.log(data);
+    if (fetchData) {
+      res.json({ message: "Login Sucessfull" });
+    } else {
+      res.json({ message: "credentials doesn't match" });
+    }
   } catch (err) {
     console.log(err);
   }
