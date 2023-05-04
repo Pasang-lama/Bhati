@@ -1,5 +1,6 @@
 import { useState } from "react";
-// import '@/styles/globals.css'
+import '@/styles/globals.css'
+import Link from "next/link";
 
 const Home = () => {
   const [email, setemail] = useState("");
@@ -17,16 +18,15 @@ const Home = () => {
   return (
     <>
       <div className="Login-form">
-    <h1>Sign in</h1>
-
-        <label >Enter Your Email Address:</label>
+        <h1>Sign in</h1>
+        <label>Enter Your Email Address:</label>
         <input
           type="email"
           placeholder="Email address"
           name="Email"
           onChange={(e) => setemail(e.target.value)}
         />
-        <label >Enter Your Password:</label>
+        <label>Enter Your Password:</label>
         <input
           type="password"
           placeholder="password"
@@ -34,6 +34,7 @@ const Home = () => {
         />
         <span className="Respone-message"></span>
         <button onClick={loginAuth}>Sign in</button>
+        Don't Have account? <link href="/register">Sign in</link>
       </div>
     </>
   );
