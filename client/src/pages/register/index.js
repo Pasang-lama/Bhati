@@ -31,7 +31,7 @@ const Register = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     };
-    const res = await fetch("http://localhost:4000/register", requestOptions);
+    const res = await fetch("http://localhost:301/register", requestOptions);
     if (res) {
       messageApi.success("Register success!");
     }

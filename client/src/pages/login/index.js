@@ -1,8 +1,7 @@
 import { useState } from "react";
-import '@/styles/globals.css'
-import Link from "next/link";
+import Link from 'next/link'
 
-const Home = () => {
+const login = () => {
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -40,4 +39,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default login;
